@@ -15,12 +15,12 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@NamedEntityGraph(name = "Study.withAll", attributeNodes = {
-        @NamedAttributeNode("tags"),
-        @NamedAttributeNode("zones"),
-        @NamedAttributeNode("managers"),
-        @NamedAttributeNode("members")
-})
+//@NamedEntityGraph(name = "Study.withAll", attributeNodes = {
+//        @NamedAttributeNode("tags"),
+//        @NamedAttributeNode("zones"),
+//        @NamedAttributeNode("managers"),
+//        @NamedAttributeNode("members")
+//})
 public class Study {
 
     @Id
@@ -86,4 +86,13 @@ public class Study {
     public boolean isManager(UserAccount userAccount) {
         return this.managers.contains(userAccount.getAccount());
     }
+
+    public String getImage() {
+        return image != null ? image : "/images/default_banner.png";
+    }
+
+    public boolean isManagedBy(Account account) {
+        return this.getManagers().contains(account);
+    }
+
 }

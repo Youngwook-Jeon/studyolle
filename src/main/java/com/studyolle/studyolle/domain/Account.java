@@ -89,4 +89,8 @@ public class Account {
     public boolean canSendConfirmEmail() {
         return this.emailCheckTokenGeneratedAt.isBefore(LocalDateTime.now().minusMinutes(30));
     }
+
+    public boolean isManagerOf(Study study) {
+        return study.getManagers().contains(this);
+    }
 }
